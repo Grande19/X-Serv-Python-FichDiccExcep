@@ -1,13 +1,17 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-# hola, hola
+fichero_pass = open ('/etc/passwd')
+linea = fichero_pass.readline
+diccionario = {}
+for linea in fichero_pass :
+	lista = linea.split(":")
+	diccionario[lista[0]] = lista [-1][:-1]
 
-fd = open('/etc/passwd', 'r')
+try : 
+	print diccionario["root"]
+	print diccionario["imaginario"]
 
-lineas = fd.readlines()
-fd.close()
-
-for linea in lineas:
-    elementos = linea.split(':')
-    print elementos[0], elementos[-1][:-1]
+except : 
+	
+	print "Usuario no encontrado"
